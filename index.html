@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JitterMaster | Performance Redefined</title>
+    <!-- Google Fonts: Inter を使用 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- CSSファイルの読み込み -->
+    <link rel="stylesheet" href="style.css">
+    <!-- アイコン用: Lucide Iconsを使用 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
 
+    <!-- ヘッダー / ナビゲーション -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="JitterMaster Logo" class="logo-img">
+            <span class="logo-text">JitterMaster</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <div class="dropdown">
+                <a href="#">Products <i data-lucide="chevron-down"></i></a>
+            </div>
+            <a href="#">Docs</a>
+        </nav>
+        <div class="nav-icons">
+            <i data-lucide="search"></i>
+            <i data-lucide="user"></i>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <main class="hero">
+        <!-- 背景用のオーバーレイ（CSSでデザインを調整します） -->
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>Performance <br><span class="highlight">Redefined.</span></h1>
+            <p class="description">
+                Unlock the impossible. Engineered to transform any standard keyboard into a high-performance analog engine with 8000Hz precision and 0.13ms response fidelity.
+            </p>
+            
+            <div class="cta-buttons">
+                <button class="btn-primary">Shop Now <i data-lucide="arrow-right"></i></button>
+                <button class="btn-secondary">View Documentation</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <i data-lucide="zap"></i>
+                    <span>0.1ms Response</span>
+                </div>
+                <div class="feature-item">
+                    <i data-lucide="shield-check"></i>
+                    <span>Secure & Safe</span>
+                </div>
+                <div class="feature-item">
+                    <i data-lucide="clock"></i>
+                    <span>Instant Delivery</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- スクロールインジケーター -->
+        <div class="scroll-indicator">
+            <i data-lucide="mouse"></i>
+        </div>
+    </main>
+
+    <script>
+        // Lucideアイコンを有効化
+        lucide.createIcons();
+    </script>
+</body>
+</html>
