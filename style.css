@@ -42,26 +42,24 @@ body {
     gap: 12px;
 }
 
-/* アイコンを丸くする設定 */
+/* ロゴ画像を丸くする */
 .logo-img {
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    display: block;
 }
 
-/* JitterMaster のテキスト設定 (大文字強制を解除) */
+/* テキストをJitterMaster（混合ケース）にする */
 .logo-text {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
-    text-transform: none !important;
-    font-variant: normal !important;
+    text-transform: none !important; /* 全大文字を禁止 */
 }
 
-/* 右上のアイコンエリア */
+/* 右上のSNSアイコンエリア */
 .nav-icons {
     display: flex;
     gap: 20px;
@@ -69,34 +67,28 @@ body {
 }
 
 .nav-icons a {
-    color: var(--secondary-text);
-    transition: color 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s, opacity 0.3s;
     text-decoration: none;
-    width: 24px;
-    height: 24px;
 }
 
-/* アイコンのサイズを統一していびつさを解消 */
-.nav-icons i, 
-.nav-icons svg {
-    width: 24px !important;
-    height: 24px !important;
-    stroke-width: 2;
-    display: block;
+/* アップロードされたPNG画像のサイズと見た目の調整 */
+.nav-social-img {
+    width: 28px;  /* アイコンのサイズ */
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* 黒い画像を白く変換する設定（元から白い場合は不要ですが、安全策として） */
+    opacity: 0.8;
 }
 
 .nav-icons a:hover {
-    color: var(--text-color);
     transform: translateY(-2px);
 }
 
-/* Discordアイコン専用の調整 */
-.icon-discord {
-    fill: none;
-    stroke: currentColor;
+.nav-icons a:hover .nav-social-img {
+    opacity: 1;
 }
 
 /* ヒーローセクション */
