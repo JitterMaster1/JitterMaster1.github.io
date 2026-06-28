@@ -42,7 +42,6 @@ body {
     gap: 12px;
 }
 
-/* ロゴ画像を丸くする */
 .logo-img {
     width: 40px;
     height: 40px;
@@ -51,15 +50,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* テキストをJitterMaster（混合ケース）にする */
+/* テキストをJitterMasterにする（強制大文字の完全解除） */
 .logo-text {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
-    text-transform: none !important; /* 全大文字を禁止 */
+    text-transform: none !important;
 }
 
-/* 右上のSNSアイコンエリア */
 .nav-icons {
     display: flex;
     gap: 20px;
@@ -70,25 +68,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s, opacity 0.3s;
     text-decoration: none;
 }
 
-/* アップロードされたPNG画像のサイズと見た目の調整 */
+/* SNSアイコン画像のサイズと表示調整 */
 .nav-social-img {
-    width: 28px;  /* アイコンのサイズ */
-    height: 28px;
+    width: 24px;
+    height: 24px;
     object-fit: contain;
-    filter: brightness(0) invert(1); /* 黒い画像を白く変換する設定（元から白い場合は不要ですが、安全策として） */
-    opacity: 0.8;
-}
-
-.nav-icons a:hover {
-    transform: translateY(-2px);
-}
-
-.nav-icons a:hover .nav-social-img {
-    opacity: 1;
+    display: block;
 }
 
 /* ヒーローセクション */
@@ -159,23 +147,16 @@ button {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    box-shadow: 0 10px 20px rgba(255, 59, 48, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 25px rgba(255, 59, 48, 0.4);
 }
 
 .btn-secondary {
     background-color: transparent;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: white;
 }
 
 /* 特徴セクション */
