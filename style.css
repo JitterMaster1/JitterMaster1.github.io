@@ -50,6 +50,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* テキストをJitterMasterにする（強制大文字の完全解除） */
 .logo-text {
     font-weight: 700;
     font-size: 1.4rem;
@@ -57,32 +58,25 @@ body {
     text-transform: none !important;
 }
 
-/* SNSアイコンエリア */
 .nav-icons {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
 }
 
-.social-icon {
+.nav-icons a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--secondary-text);
-    transition: color 0.3s, transform 0.3s;
     text-decoration: none;
 }
 
-/* SVGアイコンのサイズと色 */
-.social-icon svg {
+/* SNSアイコン画像のサイズと表示調整 */
+.nav-social-img {
     width: 24px;
     height: 24px;
-    fill: currentColor; /* 文字色と同じ色にする */
-}
-
-.social-icon:hover {
-    color: var(--text-color);
-    transform: translateY(-2px);
+    object-fit: contain;
+    display: block;
 }
 
 /* ヒーローセクション */
@@ -153,23 +147,16 @@ button {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    box-shadow: 0 10px 20px rgba(255, 59, 48, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 25px rgba(255, 59, 48, 0.4);
 }
 
 .btn-secondary {
     background-color: transparent;
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: white;
 }
 
 /* 特徴セクション */
