@@ -42,21 +42,26 @@ body {
     gap: 12px;
 }
 
+/* アイコンを丸くする設定 */
 .logo-img {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    display: block;
 }
 
+/* JitterMaster のテキスト設定 (大文字強制を解除) */
 .logo-text {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
-    text-transform: none !important; /* 大文字強制を確実に解除 */
+    text-transform: none !important;
+    font-variant: normal !important;
 }
 
+/* 右上のアイコンエリア */
 .nav-icons {
     display: flex;
     gap: 20px;
@@ -68,19 +73,30 @@ body {
     transition: color 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
-}
-
-/* アイコン自体のサイズを統一 */
-.nav-icons i, .nav-icons svg {
     width: 24px;
     height: 24px;
+}
+
+/* アイコンのサイズを統一していびつさを解消 */
+.nav-icons i, 
+.nav-icons svg {
+    width: 24px !important;
+    height: 24px !important;
     stroke-width: 2;
+    display: block;
 }
 
 .nav-icons a:hover {
     color: var(--text-color);
     transform: translateY(-2px);
+}
+
+/* Discordアイコン専用の調整 */
+.icon-discord {
+    fill: none;
+    stroke: currentColor;
 }
 
 /* ヒーローセクション */
