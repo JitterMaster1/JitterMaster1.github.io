@@ -46,20 +46,20 @@ body {
     width: 35px;
     height: 35px;
     object-fit: cover;
-    border-radius: 50%; /* アイコンを丸くする */
+    border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .logo-text {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     letter-spacing: 0.5px;
-    /* text-transform: uppercase; を削除して JitterMaster を維持 */
+    text-transform: none !important; /* 大文字強制を確実に解除 */
 }
 
 .nav-icons {
     display: flex;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -68,6 +68,14 @@ body {
     transition: color 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
+    text-decoration: none;
+}
+
+/* アイコン自体のサイズを統一 */
+.nav-icons i, .nav-icons svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
 }
 
 .nav-icons a:hover {
