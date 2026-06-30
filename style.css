@@ -72,7 +72,6 @@ body {
     text-decoration: none;
 }
 
-/* SNSアイコン画像の基本設定 */
 .nav-social-img {
     width: 26px;
     height: 26px;
@@ -81,9 +80,9 @@ body {
     opacity: 0.9;
 }
 
-/* Xのアイコンだけを強制的に小さくする (優先順位を最大化) */
+/* Xアイコンのサイズ（ユーザー調整用の値を維持） */
 img.nav-social-img.icon-x {
-    width: 15px !important;
+    width: 15px !important; /* お好みの数値に再調整してください */
     height: 15px !important;
 }
 
@@ -92,16 +91,14 @@ img.nav-social-img.icon-x {
     opacity: 1;
 }
 
-/* ヒーローセクション */
+/* ヒーローセクション全体 */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 0 20px;
+    justify-content: center;
+    padding: 100px 50px 50px;
     background: 
         radial-gradient(circle at center, rgba(0, 255, 255, 0.05) 0%, transparent 70%),
         linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)),
@@ -110,13 +107,41 @@ img.nav-social-img.icon-x {
     background-position: center;
 }
 
-.hero-content {
-    max-width: 800px;
+/* 左右分割用のコンテナ */
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 60px;
     z-index: 10;
 }
 
+/* 左側：画像エリア */
+.hero-image-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.software-img {
+    width: 100%;
+    max-width: 500px; /* 画像の最大サイズ */
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(255, 59, 48, 0.2)); /* ソフトウェア画像に微かな光彩を追加 */
+}
+
+/* 右側：コンテンツエリア */
+.hero-content {
+    flex: 1;
+    text-align: left; /* テキストを左揃えに */
+}
+
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 20px;
@@ -131,16 +156,14 @@ img.nav-social-img.icon-x {
     font-size: 1.1rem;
     color: var(--secondary-text);
     margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 550px;
 }
 
 /* ボタン */
 .cta-buttons {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start; /* ボタンも左揃えに */
     margin-bottom: 60px;
 }
 
@@ -182,8 +205,8 @@ button {
 /* 特徴セクション */
 .features {
     display: flex;
-    gap: 40px;
-    justify-content: center;
+    gap: 30px;
+    justify-content: flex-start; /* 特徴も左揃えに */
     color: var(--secondary-text);
     font-size: 0.9rem;
 }
@@ -199,7 +222,26 @@ button {
     height: 18px;
 }
 
-/* レスポンシブ対応 */
+/* レスポンシブ対応：画面が狭いときは縦並びにする */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+
+    .cta-buttons, .features {
+        justify-content: center;
+    }
+    
+    .software-img {
+        max-width: 80%;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar { padding: 15px 20px; }
     .features { flex-direction: column; gap: 15px; }
