@@ -47,7 +47,8 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    border: none; /* 赤い縁取りを削除 */
+    /* 赤い縁取りを削除 */
+    border: none !important;
 }
 
 .logo-text {
@@ -80,7 +81,7 @@ body {
     opacity: 0.8;
 }
 
-/* Xのアイコンサイズを18pxに指定 */
+/* Xのアイコンサイズを18pxに固定 */
 img.nav-social-img.icon-x {
     width: 18px !important;
     height: 18px !important;
@@ -100,7 +101,7 @@ img.nav-social-img.icon-x {
     justify-content: center;
     padding: 100px 50px 50px;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 75, 62, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 20% 50%, rgba(255, 75, 62, 0.08) 0%, transparent 50%),
         linear-gradient(rgba(5, 5, 5, 0.8), rgba(5, 5, 5, 0.8)),
         url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
     background-color: var(--bg-color);
@@ -128,7 +129,7 @@ img.nav-social-img.icon-x {
     height: auto;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 
 .hero-content {
@@ -157,7 +158,7 @@ img.nav-social-img.icon-x {
     max-width: 480px;
 }
 
-/* ボタン（以前の丸いデザイン） */
+/* ボタン（丸いデザイン） */
 .cta-buttons {
     display: flex;
     gap: 15px;
@@ -168,7 +169,7 @@ button {
     padding: 14px 35px;
     font-size: 0.95rem;
     font-weight: 700;
-    border-radius: 50px; /* カプセル型に戻しました */
+    border-radius: 50px !important; /* 確実にカプセル型に */
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -201,12 +202,12 @@ button {
     border-color: white;
 }
 
-/* 特徴セクション（全体的に小さく調整） */
+/* 特徴セクション（アイコンと文字をスケールダウン） */
 .features {
     display: flex;
     gap: 25px;
     color: #d0d0d0;
-    font-size: 0.8rem; /* 文字サイズをさらに小さく */
+    font-size: 0.8rem; /* 小さめに調整 */
     padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -218,8 +219,8 @@ button {
 }
 
 .feature-item i {
-    width: 14px; /* アイコンをさらに小さく */
-    height: 14px;
+    width: 14px !important; /* アイコンを小さめに調整 */
+    height: 14px !important;
     color: var(--accent-color);
 }
 
@@ -228,7 +229,7 @@ button {
     .hero-container { flex-direction: column; text-align: center; }
     .hero-content { text-align: center; align-items: center; display: flex; flex-direction: column; }
     .cta-buttons, .features { justify-content: center; }
-    .highlight { white-space: normal; } /* モバイルでは一行制限を解除 */
+    .highlight { white-space: normal; } /* スマホでは改行を許可 */
 }
 
 @media (max-width: 768px) {
