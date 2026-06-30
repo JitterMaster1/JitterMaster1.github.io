@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み -->
-    <link rel="stylesheet" href="style.css">
+    <!-- CSSファイルの読み込み (キャッシュ回避のためバージョンを追加) -->
+    <link rel="stylesheet" href="style.css?v=1.1">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -29,7 +29,6 @@
             </a>
             <!-- X (Twitter) -->
             <a href="#" target="_blank" aria-label="X">
-                <!-- 個別調整用に icon-x クラスを追加 -->
                 <img src="Xlogo.png" alt="X" class="nav-social-img icon-x">
             </a>
             <!-- Discord -->
@@ -69,7 +68,6 @@
     </main>
 
     <script>
-        // Lucideアイコンを初期化
         lucide.createIcons();
     </script>
 </body>
