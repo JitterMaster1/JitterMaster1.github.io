@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (キャッシュ回避のためバージョンを追加) -->
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <!-- CSSファイルの読み込み (キャッシュ回避のためバージョンを更新) -->
+    <link rel="stylesheet" href="style.css?v=1.2">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -41,27 +41,36 @@
     <!-- ヒーローセクション -->
     <main class="hero">
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Performance <br><span class="highlight">Redefined.</span></h1>
-            <p class="description">
-                Unlock the impossible. Engineered to transform any standard keyboard into a high-performance analog engine with 8000Hz precision and 0.13ms response fidelity.
-            </p>
-            <div class="cta-buttons">
-                <button class="btn-primary">Shop Now <i data-lucide="arrow-right"></i></button>
-                <button class="btn-secondary">View Documentation</button>
+        
+        <div class="hero-container">
+            <!-- 左側：画像セクション -->
+            <div class="hero-image-box">
+                <img src="software.png" alt="Software Preview" class="software-img">
             </div>
-            <div class="features">
-                <div class="feature-item">
-                    <i data-lucide="zap"></i>
-                    <span>0.1ms Response</span>
+
+            <!-- 右側：コンテンツセクション -->
+            <div class="hero-content">
+                <h1>Performance <br><span class="highlight">Redefined.</span></h1>
+                <p class="description">
+                    Unlock the impossible. Engineered to transform any standard keyboard into a high-performance analog engine with 8000Hz precision and 0.13ms response fidelity.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn-primary">Shop Now <i data-lucide="arrow-right"></i></button>
+                    <button class="btn-secondary">View Documentation</button>
                 </div>
-                <div class="feature-item">
-                    <i data-lucide="shield-check"></i>
-                    <span>Secure & Safe</span>
-                </div>
-                <div class="feature-item">
-                    <i data-lucide="clock"></i>
-                    <span>Instant Delivery</span>
+                <div class="features">
+                    <div class="feature-item">
+                        <i data-lucide="zap"></i>
+                        <span>0.1ms Response</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>Secure & Safe</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="clock"></i>
+                        <span>Instant Delivery</span>
+                    </div>
                 </div>
             </div>
         </div>
