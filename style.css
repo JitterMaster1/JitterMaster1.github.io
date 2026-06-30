@@ -72,7 +72,7 @@ body {
     text-decoration: none;
 }
 
-/* SNSアイコン画像の基本サイズ */
+/* SNSアイコン画像の基本設定 */
 .nav-social-img {
     width: 26px;
     height: 26px;
@@ -81,10 +81,10 @@ body {
     opacity: 0.9;
 }
 
-/* Xのアイコンだけ個別に小さく調整 */
-.icon-x {
-    width: 22px; 
-    height: 22px;
+/* Xのアイコンだけを強制的に小さくする (優先順位を最大化) */
+img.nav-social-img.icon-x {
+    width: 20px !important;
+    height: 20px !important;
 }
 
 .nav-icons a:hover {
