@@ -47,8 +47,7 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    /* 赤い縁取りを削除しました */
-    border: none;
+    border: none; /* 赤い縁取りを削除 */
 }
 
 .logo-text {
@@ -81,7 +80,7 @@ body {
     opacity: 0.8;
 }
 
-/* Xのアイコンサイズを18pxに固定 */
+/* Xのアイコンサイズを18pxに指定 */
 img.nav-social-img.icon-x {
     width: 18px !important;
     height: 18px !important;
@@ -145,7 +144,7 @@ img.nav-social-img.icon-x {
     letter-spacing: -2px;
 }
 
-/* Movement Macroを一行に収める設定 */
+/* Movement Macroを一行に収める */
 .highlight {
     color: var(--accent-color);
     white-space: nowrap;
@@ -158,7 +157,7 @@ img.nav-social-img.icon-x {
     max-width: 480px;
 }
 
-/* ボタン（丸いデザインに戻しました） */
+/* ボタン（以前の丸いデザイン） */
 .cta-buttons {
     display: flex;
     gap: 15px;
@@ -169,7 +168,7 @@ button {
     padding: 14px 35px;
     font-size: 0.95rem;
     font-weight: 700;
-    border-radius: 50px; /* カプセル型 */
+    border-radius: 50px; /* カプセル型に戻しました */
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -202,12 +201,12 @@ button {
     border-color: white;
 }
 
-/* 特徴セクション（サイズを小さく調整） */
+/* 特徴セクション（全体的に小さく調整） */
 .features {
     display: flex;
     gap: 25px;
     color: #d0d0d0;
-    font-size: 0.85rem; /* サイズダウン */
+    font-size: 0.8rem; /* 文字サイズをさらに小さく */
     padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -219,8 +218,8 @@ button {
 }
 
 .feature-item i {
-    width: 16px; /* アイコンサイズダウン */
-    height: 16px;
+    width: 14px; /* アイコンをさらに小さく */
+    height: 14px;
     color: var(--accent-color);
 }
 
@@ -229,7 +228,7 @@ button {
     .hero-container { flex-direction: column; text-align: center; }
     .hero-content { text-align: center; align-items: center; display: flex; flex-direction: column; }
     .cta-buttons, .features { justify-content: center; }
-    .highlight { white-space: normal; } /* スマホでは改行を許可 */
+    .highlight { white-space: normal; } /* モバイルでは一行制限を解除 */
 }
 
 @media (max-width: 768px) {
