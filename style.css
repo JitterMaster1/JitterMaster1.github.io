@@ -83,8 +83,8 @@ body {
 
 /* Xのアイコンだけを強制的に小さくする (優先順位を最大化) */
 img.nav-social-img.icon-x {
-    width: 1px !important;
-    height: 1px !important;
+    width: 15px !important;
+    height: 15px !important;
 }
 
 .nav-icons a:hover {
