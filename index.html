@@ -24,15 +24,16 @@
         
         <div class="nav-icons">
             <!-- YouTube -->
-            <a href="#" target="_blank" class="social-link">
+            <a href="#" target="_blank" aria-label="YouTube">
                 <img src="YouTubelogo.png" alt="YouTube" class="nav-social-img">
             </a>
             <!-- X (Twitter) -->
-            <a href="#" target="_blank" class="social-link">
-                <img src="Xlogo.png" alt="X" class="nav-social-img">
+            <a href="#" target="_blank" aria-label="X">
+                <!-- 個別調整用に icon-x クラスを追加 -->
+                <img src="Xlogo.png" alt="X" class="nav-social-img icon-x">
             </a>
             <!-- Discord -->
-            <a href="#" target="_blank" class="social-link">
+            <a href="#" target="_blank" aria-label="Discord">
                 <img src="Discordlogo.png" alt="Discord" class="nav-social-img">
             </a>
         </div>
@@ -68,6 +69,7 @@
     </main>
 
     <script>
+        // Lucideアイコンを初期化
         lucide.createIcons();
     </script>
 </body>
