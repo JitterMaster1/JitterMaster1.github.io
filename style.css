@@ -5,6 +5,7 @@
     --accent-color: #00a2ff; /* 鮮やかなブルー */
     --secondary-text: #b0b0b0;
     --nav-bg: rgba(5, 5, 5, 0.9);
+    --border-color: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -19,6 +20,7 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ナビゲーションバー */
@@ -31,9 +33,9 @@ body {
     align-items: center;
     padding: 20px 50px;
     background: var(--nav-bg);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 162, 255, 0.1);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {
@@ -47,17 +49,15 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    border: none !important; /* 赤い縁取りを確実に排除 */
 }
 
 .logo-text {
     font-weight: 700;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     letter-spacing: 0.5px;
-    text-transform: none !important;
+    text-transform: none;
 }
 
-/* 右上のSNSアイコンエリア */
 .nav-icons {
     display: flex;
     gap: 25px;
@@ -80,7 +80,6 @@ body {
     opacity: 0.8;
 }
 
-/* Xのアイコンサイズを18pxに固定 */
 img.nav-social-img.icon-x {
     width: 18px !important;
     height: 18px !important;
@@ -98,7 +97,7 @@ img.nav-social-img.icon-x {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 50px 50px;
+    padding: 100px 50px;
     background: 
         radial-gradient(circle at 15% 50%, rgba(0, 162, 255, 0.12) 0%, transparent 50%),
         linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
@@ -130,9 +129,9 @@ img.nav-social-img.icon-x {
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        0 0 40px rgba(0, 162, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+        0 40px 80px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(0, 162, 255, 0.1);
+    border: 1px solid var(--border-color);
 }
 
 /* 右側：コンテンツエリア */
@@ -143,33 +142,34 @@ img.nav-social-img.icon-x {
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.8rem, 5vw, 4rem);
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     letter-spacing: -2px;
 }
 
 .highlight {
     color: var(--accent-color);
-    white-space: nowrap; /* 一行に収める */
-    text-shadow: 0 0 25px rgba(0, 162, 255, 0.4);
+    white-space: nowrap;
+    text-shadow: 0 0 30px rgba(0, 162, 255, 0.4);
 }
 
 .description {
     font-size: 1.1rem;
     color: var(--secondary-text);
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     max-width: 480px;
+    font-weight: 400;
 }
 
-/* --- ボタンエリアの新しいスタイル --- */
+/* --- ボタンエリア (CTA Group) --- */
 .cta-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 50px;
-    width: fit-content; /* コンテンツに合わせる */
+    width: fit-content;
 }
 
 .cta-top-row {
@@ -180,7 +180,7 @@ img.nav-social-img.icon-x {
 button {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600; /* シャープで高級感のある太さ */
+    font-weight: 600; /* シャープな太さ */
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -188,44 +188,42 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 14px 28px;
-    border-radius: 50px !important; /* 全てのボタンをカプセル型に */
-    text-transform: none; /* 大文字強制を解除 */
+    padding: 15px 30px;
+    border-radius: 50px; /* カプセル型 */
+    text-transform: none;
 }
 
-/* Buy Now ボタン */
 .btn-primary {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    box-shadow: 0 4px 15px rgba(0, 162, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 162, 255, 0.2);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     background-color: #33b5ff;
-    box-shadow: 0 8px 20px rgba(0, 162, 255, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 162, 255, 0.3);
 }
 
-/* Check License Key ボタン */
 .btn-secondary {
     background-color: rgba(255, 255, 255, 0.05);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
 
-/* Learn More ボタン (横長) */
+/* 横長ボタン */
 .btn-wide {
     width: 100%;
     background-color: transparent;
     color: var(--secondary-text);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
 }
 
 .btn-wide:hover {
@@ -237,73 +235,74 @@ button {
 /* 特徴セクション */
 .features {
     display: flex;
-    gap: 25px;
+    gap: 30px;
     color: #d0d0d0;
-    font-size: 0.8rem;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
 }
 
 .feature-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .feature-item i {
-    width: 14px !important;
-    height: 14px !important;
+    width: 16px;
+    height: 16px;
     color: var(--accent-color);
+}
+
+/* ログインステータス (右下) */
+.login-status-footer {
+    position: fixed;
+    bottom: 25px;
+    right: 30px;
+    font-size: 0.85rem;
+    color: #666;
+    z-index: 1001;
+    background: rgba(5, 5, 5, 0.5);
+    padding: 5px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+}
+
+.switch-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.switch-link:hover {
+    text-decoration: underline;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 1150px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
+    .hero-container { flex-direction: column; text-align: center; }
+    .hero-image-box { justify-content: center; }
+    .hero-content { 
+        text-align: center; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        min-width: unset; 
     }
-    
-    .hero-image-box {
-        justify-content: center;
-    }
-    
-    .hero-content {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: unset;
-    }
-
-    .cta-group {
-        align-items: center;
-    }
-
-    .highlight {
-        white-space: normal;
+    .cta-group { align-items: center; }
+    .highlight { white-space: normal; }
+    .login-status-footer { 
+        right: 0; left: 0; bottom: 15px; 
+        text-align: center; background: none; 
     }
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        padding: 15px 25px;
-    }
-
-    .features {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .cta-top-row {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .cta-group {
-        width: 100%;
-    }
-
-    button {
-        width: 100%;
-    }
+    .navbar { padding: 15px 25px; }
+    .features { flex-direction: column; gap: 15px; }
+    .cta-top-row { flex-direction: column; width: 100%; }
+    .cta-group { width: 100%; }
+    button { width: 100%; }
 }
