@@ -2,7 +2,7 @@
 :root {
     --bg-color: #050505;
     --text-color: #ffffff;
-    --accent-color: #00a2ff; /* 鮮やかなブルーに変更 */
+    --accent-color: #00a2ff; /* 鮮やかなブルー */
     --secondary-text: #b0b0b0;
     --nav-bg: rgba(5, 5, 5, 0.9);
 }
@@ -33,7 +33,7 @@ body {
     background: var(--nav-bg);
     backdrop-filter: blur(15px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 162, 255, 0.1); /* 青い境界線 */
+    border-bottom: 1px solid rgba(0, 162, 255, 0.1);
 }
 
 .logo {
@@ -47,7 +47,7 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    border: none !important;
+    border: none !important; /* 赤い縁取りは削除 */
 }
 
 .logo-text {
@@ -100,7 +100,7 @@ img.nav-social-img.icon-x {
     justify-content: center;
     padding: 100px 50px 50px;
     background: 
-        radial-gradient(circle at 15% 50%, rgba(0, 162, 255, 0.12) 0%, transparent 50%), /* 青い光彩 */
+        radial-gradient(circle at 15% 50%, rgba(0, 162, 255, 0.12) 0%, transparent 50%),
         linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.85)),
         url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
     background-color: var(--bg-color);
@@ -111,27 +111,27 @@ img.nav-social-img.icon-x {
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1400px; /* 全体幅を少し広げる */
+    max-width: 1400px;
     gap: 50px;
     z-index: 10;
 }
 
-/* 左側：画像エリア（比率を上げ、余白を埋める） */
+/* 左側：画像エリア（余白を埋めるために大きく設定） */
 .hero-image-box {
-    flex: 1.5; /* テキスト側より大きく設定 */
+    flex: 1.5;
     display: flex;
-    justify-content: flex-start; /* 左に寄せる */
+    justify-content: flex-start;
 }
 
 .software-img {
     width: 100%;
-    max-width: 750px; /* 画像サイズを大幅にアップ */
+    max-width: 750px; /* 画像を大きく調整 */
     height: auto;
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 
         0 30px 60px rgba(0, 0, 0, 0.7),
-        0 0 40px rgba(0, 162, 255, 0.15); /* 青いグロー効果 */
+        0 0 40px rgba(0, 162, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -150,7 +150,6 @@ img.nav-social-img.icon-x {
     letter-spacing: -2px;
 }
 
-/* Movement Macroの青色指定 */
 .highlight {
     color: var(--accent-color);
     white-space: nowrap;
@@ -164,7 +163,7 @@ img.nav-social-img.icon-x {
     max-width: 480px;
 }
 
-/* ボタン（青い丸ボタン） */
+/* ボタン（丸いデザイン） */
 .cta-buttons {
     display: flex;
     gap: 15px;
@@ -208,7 +207,7 @@ button {
     border-color: white;
 }
 
-/* 特徴セクション */
+/* 特徴セクション（アイコンと文字を小さめに調整） */
 .features {
     display: flex;
     gap: 25px;
