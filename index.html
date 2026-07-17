@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを1.9に更新) -->
-    <link rel="stylesheet" href="style.css?v=1.9">
+    <!-- CSSファイルの読み込み (バージョンを2.0に更新) -->
+    <link rel="stylesheet" href="style.css?v=2.0">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -57,7 +57,6 @@
                     Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.
                 </p>
                 <div class="cta-buttons">
-                    <!-- BUY NOW ボタンに id を追加 -->
                     <button id="buy-now-btn" class="btn-primary">Buy Now <i data-lucide="shopping-cart"></i></button>
                     <button class="btn-secondary">Learn More</button>
                 </div>
@@ -82,21 +81,18 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL（Cloudflare TunnelのURL）
-        const API_BASE_URL = 'https://harmony-concord-executives-albany.trycloudflare.com';
+        // 新しい Cloudflare Tunnel URL
+        const API_BASE_URL = 'https://tire-organizations-instructions-travelling.trycloudflare.com';
 
         // BUY NOW ボタンのクリックイベント
         document.getElementById('buy-now-btn').addEventListener('click', async () => {
             try {
-                // サーバーからDiscordログイン用のURLを取得
                 const response = await fetch(`${API_BASE_URL}/auth/discord`);
                 const data = await response.json();
-                
-                // Discordの認証画面へ飛ばす
                 window.location.href = data.url;
             } catch (error) {
                 console.error('Error:', error);
-                alert('サーバーに接続できません。サーバーが起動しているか確認してください。');
+                alert('サーバーに接続できません。サーバーとトンネルが起動しているか確認してください。');
             }
         });
     </script>
