@@ -25,18 +25,9 @@
         </div>
         
         <div class="nav-icons">
-            <!-- YouTube -->
-            <a href="#" target="_blank" aria-label="YouTube">
-                <img src="YouTubelogo.png" alt="YouTube" class="nav-social-img">
-            </a>
-            <!-- X (Twitter) -->
-            <a href="#" target="_blank" aria-label="X">
-                <img src="Xlogo.png" alt="X" class="nav-social-img icon-x">
-            </a>
-            <!-- Discord -->
-            <a href="#" target="_blank" aria-label="Discord">
-                <img src="Discordlogo.png" alt="Discord" class="nav-social-img">
-            </a>
+            <a href="#" target="_blank" aria-label="YouTube"><img src="YouTubelogo.png" alt="YouTube" class="nav-social-img"></a>
+            <a href="#" target="_blank" aria-label="X"><img src="Xlogo.png" alt="X" class="nav-social-img icon-x"></a>
+            <a href="#" target="_blank" aria-label="Discord"><img src="Discordlogo.png" alt="Discord" class="nav-social-img"></a>
         </div>
     </header>
 
@@ -94,7 +85,7 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL (Cloudflare TunnelのURL)
+        // サーバーのURL
         const API_BASE_URL = 'https://tire-organizations-instructions-travelling.trycloudflare.com';
 
         /**
@@ -102,7 +93,7 @@
          */
         async function checkLoginStatus() {
             try {
-                // セッション維持のためcredentialsを含める
+                // credentialsを含めてリクエストし、セッションを確認
                 const response = await fetch(`${API_BASE_URL}/user/status`);
                 if (response.ok) {
                     const user = await response.json();
@@ -112,14 +103,12 @@
                     }
                 }
             } catch (error) {
-                console.log('Not logged in or server down');
+                console.log('Not logged in');
             }
         }
 
         /**
          * 認証・アクション開始
-         * @param {string} action - 'buy' or 'check'
-         * @param {boolean} isSwitch - アカウント切り替えかどうか
          */
         function handleAction(action, isSwitch = false) {
             let url = `${API_BASE_URL}/auth/discord?action=${action}`;
@@ -129,17 +118,16 @@
             window.location.href = url;
         }
 
-        // イベントリスナーの登録
+        // イベントリスナー
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
         
-        // Switch account ボタン
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
             e.preventDefault();
             handleAction('buy', true);
         });
 
-        // ページ読み込み時にログイン状態を確認
+        // 読み込み時にログイン状態を確認
         window.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
