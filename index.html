@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.0に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <!-- CSSファイルの読み込み (バージョンを3.1に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.1">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -25,9 +25,18 @@
         </div>
         
         <div class="nav-icons">
-            <a href="#" target="_blank" aria-label="YouTube"><img src="YouTubelogo.png" alt="YouTube" class="nav-social-img"></a>
-            <a href="#" target="_blank" aria-label="X"><img src="Xlogo.png" alt="X" class="nav-social-img icon-x"></a>
-            <a href="#" target="_blank" aria-label="Discord"><img src="Discordlogo.png" alt="Discord" class="nav-social-img"></a>
+            <!-- YouTube -->
+            <a href="#" target="_blank" aria-label="YouTube">
+                <img src="YouTubelogo.png" alt="YouTube" class="nav-social-img">
+            </a>
+            <!-- X (Twitter) -->
+            <a href="#" target="_blank" aria-label="X">
+                <img src="Xlogo.png" alt="X" class="nav-social-img icon-x">
+            </a>
+            <!-- Discord -->
+            <a href="#" target="_blank" aria-label="Discord">
+                <img src="Discordlogo.png" alt="Discord" class="nav-social-img">
+            </a>
         </div>
     </header>
 
@@ -85,7 +94,7 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL (ご自身のCloudflare URLに書き換えてください)
+        // サーバーのURL (Cloudflare TunnelのURL)
         const API_BASE_URL = 'https://tire-organizations-instructions-travelling.trycloudflare.com';
 
         /**
@@ -93,11 +102,8 @@
          */
         async function checkLoginStatus() {
             try {
-                // 資格情報を含めてリクエスト (セッションクッキー確認)
-                const response = await fetch(`${API_BASE_URL}/user/status`, {
-                    headers: { 'Accept': 'application/json' }
-                });
-                
+                // セッション維持のためcredentialsを含める
+                const response = await fetch(`${API_BASE_URL}/user/status`);
                 if (response.ok) {
                     const user = await response.json();
                     if (user && user.username) {
@@ -113,16 +119,14 @@
         /**
          * 認証・アクション開始
          * @param {string} action - 'buy' or 'check'
+         * @param {boolean} isSwitch - アカウント切り替えかどうか
          */
-        async function handleAction(action) {
-            try {
-                // アクション情報を添えてDiscord認証へ
-                // (サーバー側で一度ログイン済みなら認証をスキップするロジックを実装します)
-                window.location.href = `${API_BASE_URL}/auth/discord?action=${action}`;
-            } catch (error) {
-                console.error('Error:', error);
-                alert('サーバーに接続できません。サーバーとトンネルが起動しているか確認してください。');
+        function handleAction(action, isSwitch = false) {
+            let url = `${API_BASE_URL}/auth/discord?action=${action}`;
+            if (isSwitch) {
+                url += '&switch=true';
             }
+            window.location.href = url;
         }
 
         // イベントリスナーの登録
@@ -132,7 +136,7 @@
         // Switch account ボタン
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
             e.preventDefault();
-            handleAction('buy'); // 強制的に再ログインさせる
+            handleAction('buy', true);
         });
 
         // ページ読み込み時にログイン状態を確認
