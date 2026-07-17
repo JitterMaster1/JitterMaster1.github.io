@@ -47,7 +47,7 @@ body {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    border: none !important; /* 赤い縁取りは削除 */
+    border: none !important; /* 赤い縁取りを確実に排除 */
 }
 
 .logo-text {
@@ -112,11 +112,11 @@ img.nav-social-img.icon-x {
     justify-content: center;
     width: 100%;
     max-width: 1400px;
-    gap: 50px;
+    gap: 60px;
     z-index: 10;
 }
 
-/* 左側：画像エリア（余白を埋めるために大きく設定） */
+/* 左側：画像エリア */
 .hero-image-box {
     flex: 1.5;
     display: flex;
@@ -125,7 +125,7 @@ img.nav-social-img.icon-x {
 
 .software-img {
     width: 100%;
-    max-width: 750px; /* 画像を大きく調整 */
+    max-width: 750px;
     height: auto;
     object-fit: contain;
     border-radius: 12px;
@@ -152,7 +152,7 @@ img.nav-social-img.icon-x {
 
 .highlight {
     color: var(--accent-color);
-    white-space: nowrap;
+    white-space: nowrap; /* 一行に収める */
     text-shadow: 0 0 25px rgba(0, 162, 255, 0.4);
 }
 
@@ -163,51 +163,78 @@ img.nav-social-img.icon-x {
     max-width: 480px;
 }
 
-/* ボタン（丸いデザイン） */
-.cta-buttons {
+/* --- ボタンエリアの新しいスタイル --- */
+.cta-group {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 50px;
+    width: fit-content; /* コンテンツに合わせる */
+}
+
+.cta-top-row {
+    display: flex;
+    gap: 12px;
 }
 
 button {
-    padding: 14px 35px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    border-radius: 50px !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600; /* シャープで高級感のある太さ */
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 50px !important; /* 全てのボタンをカプセル型に */
+    text-transform: none; /* 大文字強制を解除 */
 }
 
+/* Buy Now ボタン */
 .btn-primary {
     background-color: var(--accent-color);
     color: white;
     border: none;
-    box-shadow: 0 8px 15px rgba(0, 162, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 162, 255, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 20px rgba(0, 162, 255, 0.3);
     background-color: #33b5ff;
+    box-shadow: 0 8px 20px rgba(0, 162, 255, 0.4);
 }
 
+/* Check License Key ボタン */
 .btn-secondary {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.05);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
 }
 
-/* 特徴セクション（アイコンと文字を小さめに調整） */
+/* Learn More ボタン (横長) */
+.btn-wide {
+    width: 100%;
+    background-color: transparent;
+    color: var(--secondary-text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-wide:hover {
+    color: white;
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 特徴セクション */
 .features {
     display: flex;
     gap: 25px;
@@ -231,16 +258,52 @@ button {
 
 /* レスポンシブ対応 */
 @media (max-width: 1150px) {
-    .hero-container { flex-direction: column; text-align: center; }
-    .hero-image-box { justify-content: center; flex: 1; }
-    .hero-content { text-align: center; align-items: center; display: flex; flex-direction: column; min-width: unset; }
-    .cta-buttons, .features { justify-content: center; }
-    .highlight { white-space: normal; }
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-image-box {
+        justify-content: center;
+    }
+    
+    .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: unset;
+    }
+
+    .cta-group {
+        align-items: center;
+    }
+
+    .highlight {
+        white-space: normal;
+    }
 }
 
 @media (max-width: 768px) {
-    .navbar { padding: 15px 25px; }
-    .features { flex-direction: column; gap: 15px; }
-    .cta-buttons { flex-direction: column; width: 100%; }
-    button { width: 100%; justify-content: center; }
+    .navbar {
+        padding: 15px 25px;
+    }
+
+    .features {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cta-top-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-group {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
