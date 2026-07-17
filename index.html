@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを2.1に更新) -->
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <!-- CSSファイルの読み込み (バージョンを3.0に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.0">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -36,17 +36,19 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-container">
+            <!-- 左側：画像セクション -->
             <div class="hero-image-box">
                 <img src="software.png" alt="Apex Legends Movement Macro Preview" class="software-img">
             </div>
 
+            <!-- 右側：コンテンツセクション -->
             <div class="hero-content">
                 <h1>Apex Legends <br><span class="highlight">Movement Macro</span></h1>
                 <p class="description">
                     Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.
                 </p>
                 
-                <!-- ボタンエリアの刷新 -->
+                <!-- ボタンエリア (CTA Group) -->
                 <div class="cta-group">
                     <div class="cta-top-row">
                         <button id="buy-now-btn" class="btn-primary">Buy Now <i data-lucide="shopping-cart"></i></button>
@@ -55,14 +57,30 @@
                     <button class="btn-wide">Learn More</button>
                 </div>
 
+                <!-- 特徴セクション -->
                 <div class="features">
-                    <div class="feature-item"><i data-lucide="gamepad-2"></i><span>Controller Support</span></div>
-                    <div class="feature-item"><i data-lucide="shield-check"></i><span>Undetected</span></div>
-                    <div class="feature-item"><i data-lucide="infinity"></i><span>Lifetime</span></div>
+                    <div class="feature-item">
+                        <i data-lucide="gamepad-2"></i>
+                        <span>Controller Support</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>Undetected</span>
+                    </div>
+                    <div class="feature-item">
+                        <i data-lucide="infinity"></i>
+                        <span>Lifetime</span>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- ログイン状態表示 (画面右下) -->
+    <footer id="footer-status" class="login-status-footer" style="display: none;">
+        Signed in to Discord as <span id="discord-username-display"></span>. 
+        <a href="#" id="switch-account-link" class="switch-link">Switch account</a>
+    </footer>
 
     <script>
         lucide.createIcons();
@@ -70,20 +88,55 @@
         // サーバーのURL (ご自身のCloudflare URLに書き換えてください)
         const API_BASE_URL = 'https://tire-organizations-instructions-travelling.trycloudflare.com';
 
-        async function startAuth(action) {
+        /**
+         * ログイン状態の確認
+         */
+        async function checkLoginStatus() {
             try {
-                // action (buy か check) をサーバーに伝える
-                const response = await fetch(`${API_BASE_URL}/auth/discord?action=${action}`);
-                const data = await response.json();
-                window.location.href = data.url;
+                // 資格情報を含めてリクエスト (セッションクッキー確認)
+                const response = await fetch(`${API_BASE_URL}/user/status`, {
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    const user = await response.json();
+                    if (user && user.username) {
+                        document.getElementById('discord-username-display').innerText = user.username;
+                        document.getElementById('footer-status').style.display = 'block';
+                    }
+                }
+            } catch (error) {
+                console.log('Not logged in or server down');
+            }
+        }
+
+        /**
+         * 認証・アクション開始
+         * @param {string} action - 'buy' or 'check'
+         */
+        async function handleAction(action) {
+            try {
+                // アクション情報を添えてDiscord認証へ
+                // (サーバー側で一度ログイン済みなら認証をスキップするロジックを実装します)
+                window.location.href = `${API_BASE_URL}/auth/discord?action=${action}`;
             } catch (error) {
                 console.error('Error:', error);
                 alert('サーバーに接続できません。サーバーとトンネルが起動しているか確認してください。');
             }
         }
 
-        document.getElementById('buy-now-btn').addEventListener('click', () => startAuth('buy'));
-        document.getElementById('check-key-btn').addEventListener('click', () => startAuth('check'));
+        // イベントリスナーの登録
+        document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
+        document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
+        
+        // Switch account ボタン
+        document.getElementById('switch-account-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            handleAction('buy'); // 強制的に再ログインさせる
+        });
+
+        // ページ読み込み時にログイン状態を確認
+        window.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
 </html>
