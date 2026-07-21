@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.1に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.1">
+    <!-- CSSファイルの読み込み (バージョンを3.2に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.2">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -85,8 +85,8 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL
-        const API_BASE_URL = 'https://tire-organizations-instructions-travelling.trycloudflare.com';
+        // サーバーのURL (Cloudflare TunnelのURL)
+        const API_BASE_URL = 'https://explicitly-situated-lion-pad.trycloudflare.com';
 
         /**
          * ログイン状態の確認
@@ -118,7 +118,6 @@
             window.location.href = url;
         }
 
-        // イベントリスナー
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
         
@@ -127,7 +126,6 @@
             handleAction('buy', true);
         });
 
-        // 読み込み時にログイン状態を確認
         window.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
