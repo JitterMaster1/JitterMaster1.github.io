@@ -163,7 +163,7 @@ img.nav-social-img.icon-x {
     font-weight: 400;
 }
 
-/* --- ボタンエリア (CTA Group) --- */
+/* ボタンエリア (CTA Group) */
 .cta-group {
     display: flex;
     flex-direction: column;
@@ -180,7 +180,7 @@ img.nav-social-img.icon-x {
 button {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600; /* シャープな太さ */
+    font-weight: 600;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -189,7 +189,7 @@ button {
     justify-content: center;
     gap: 10px;
     padding: 15px 30px;
-    border-radius: 50px; /* カプセル型 */
+    border-radius: 50px;
     text-transform: none;
 }
 
@@ -255,6 +255,44 @@ button {
     color: var(--accent-color);
 }
 
+/* 言語選択ボックス (左下) */
+.language-selector {
+    position: fixed;
+    bottom: 25px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    color: #888;
+}
+
+.language-selector i {
+    width: 16px;
+    height: 16px;
+}
+
+.language-selector select {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.language-selector select option {
+    background: #0a0a0a;
+    color: #fff;
+}
+
 /* ログインステータス (右下) */
 .login-status-footer {
     position: fixed;
@@ -264,9 +302,10 @@ button {
     color: #666;
     z-index: 1001;
     background: rgba(5, 5, 5, 0.5);
-    padding: 5px 15px;
+    padding: 8px 20px;
     border-radius: 50px;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
 }
 
 .switch-link {
@@ -294,8 +333,12 @@ button {
     .cta-group { align-items: center; }
     .highlight { white-space: normal; }
     .login-status-footer { 
-        right: 0; left: 0; bottom: 15px; 
-        text-align: center; background: none; 
+        right: 10px; left: auto; bottom: 15px; 
+        font-size: 0.75rem;
+    }
+    .language-selector {
+        left: 10px; bottom: 15px;
+        font-size: 0.75rem;
     }
 }
 
