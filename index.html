@@ -85,15 +85,14 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL (Cloudflare TunnelのURL)
-        const API_BASE_URL = 'https://explicitly-situated-lion-pad.trycloudflare.com';
+        // ★ 新しい Cloudflare Tunnel URL に更新
+        const API_BASE_URL = 'https://doing-scores-persistent-armor.trycloudflare.com';
 
         /**
          * ログイン状態の確認
          */
         async function checkLoginStatus() {
             try {
-                // credentialsを含めてリクエストし、セッションを確認
                 const response = await fetch(`${API_BASE_URL}/user/status`);
                 if (response.ok) {
                     const user = await response.json();
