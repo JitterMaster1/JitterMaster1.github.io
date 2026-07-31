@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.2に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.2">
+    <!-- CSSファイルの読み込み (バージョンを3.3に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.3">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -43,50 +43,112 @@
 
             <!-- 右側：コンテンツセクション -->
             <div class="hero-content">
-                <h1>Apex Legends <br><span class="highlight">Movement Macro</span></h1>
-                <p class="description">
+                <h1 id="text-hero-title">Apex Legends <br><span class="highlight" id="text-hero-highlight">Movement Macro</span></h1>
+                <p class="description" id="text-hero-desc">
                     Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.
                 </p>
                 
-                <!-- ボタンエリア (CTA Group) -->
+                <!-- ボタンエリア -->
                 <div class="cta-group">
                     <div class="cta-top-row">
-                        <button id="buy-now-btn" class="btn-primary">Buy Now <i data-lucide="shopping-cart"></i></button>
-                        <button id="check-key-btn" class="btn-secondary">Check License Key <i data-lucide="key"></i></button>
+                        <button id="buy-now-btn" class="btn-primary"><span id="text-btn-buy">Buy Now</span> <i data-lucide="shopping-cart"></i></button>
+                        <button id="check-key-btn" class="btn-secondary"><span id="text-btn-check">Check License Key</span> <i data-lucide="key"></i></button>
                     </div>
-                    <button class="btn-wide">Learn More</button>
+                    <button class="btn-wide" id="text-btn-learn">Learn More</button>
                 </div>
 
-                <!-- 特徴セクション -->
+                <!-- 特徴セクション (Driverless, Undetected, Lifetime の順) -->
                 <div class="features">
                     <div class="feature-item">
-                        <i data-lucide="gamepad-2"></i>
-                        <span>Controller Support</span>
+                        <i data-lucide="cpu"></i>
+                        <span id="text-feat-driverless">Driverless</span>
                     </div>
                     <div class="feature-item">
                         <i data-lucide="shield-check"></i>
-                        <span>Undetected</span>
+                        <span id="text-feat-undetected">Undetected</span>
                     </div>
                     <div class="feature-item">
                         <i data-lucide="infinity"></i>
-                        <span>Lifetime</span>
+                        <span id="text-feat-lifetime">Lifetime</span>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- 言語選択ボックス (画面左下) -->
+    <div class="language-selector">
+        <i data-lucide="languages"></i>
+        <select id="lang-select">
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+        </select>
+    </div>
+
     <!-- ログイン状態表示 (画面右下) -->
     <footer id="footer-status" class="login-status-footer" style="display: none;">
-        Signed in to Discord as <span id="discord-username-display"></span>. 
+        <span id="text-status-signed-in">Signed in to Discord as </span><span id="discord-username-display"></span>. 
         <a href="#" id="switch-account-link" class="switch-link">Switch account</a>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // ★ 新しい Cloudflare Tunnel URL に更新
+        // サーバーのURL
         const API_BASE_URL = 'https://doing-scores-persistent-armor.trycloudflare.com';
+
+        // 翻訳データ (index.html用)
+        const translations = {
+            en: {
+                hero_title: "Apex Legends ",
+                hero_highlight: "Movement Macro",
+                hero_desc: "Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.",
+                btn_buy: "Buy Now",
+                btn_check: "Check License Key",
+                btn_learn: "Learn More",
+                feat_driverless: "Driverless",
+                feat_undetected: "Undetected",
+                feat_lifetime: "Lifetime",
+                status_signed_in: "Signed in to Discord as ",
+                status_switch: "Switch account"
+            },
+            ja: {
+                hero_title: "エーペックスレジェンズ ",
+                hero_highlight: "キャラコンマクロ",
+                hero_desc: "Apex Legendsでのストレイフを自動化します。スペースキーを長押ししながら移動キーを押すだけ。購入は以下から可能です。",
+                btn_buy: "今すぐ購入",
+                btn_check: "ライセンスキーを確認",
+                btn_learn: "詳細を見る",
+                feat_driverless: "ドライバーレス",
+                feat_undetected: "検出不可",
+                feat_lifetime: "無期限",
+                status_signed_in: "Discordログイン中: ",
+                status_switch: "アカウントを切り替える"
+            }
+        };
+
+        /**
+         * 言語の切り替え
+         */
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            document.getElementById('text-hero-title').firstChild.textContent = t.hero_title;
+            document.getElementById('text-hero-highlight').innerText = t.hero_highlight;
+            document.getElementById('text-hero-desc').innerText = t.hero_desc;
+            document.getElementById('text-btn-buy').innerText = t.btn_buy;
+            document.getElementById('text-btn-check').innerText = t.btn_check;
+            document.getElementById('text-btn-learn').innerText = t.btn_learn;
+            document.getElementById('text-feat-driverless').innerText = t.feat_driverless;
+            document.getElementById('text-feat-undetected').innerText = t.feat_undetected;
+            document.getElementById('text-feat-lifetime').innerText = t.feat_lifetime;
+            document.getElementById('text-status-signed-in').innerText = t.status_signed_in;
+            document.getElementById('switch-account-link').innerText = t.status_switch;
+            
+            // 選択ボックスの値を同期
+            document.getElementById('lang-select').value = lang;
+            // ローカルストレージに保存
+            localStorage.setItem('preferred-lang', lang);
+        }
 
         /**
          * ログイン状態の確認
@@ -110,22 +172,35 @@
          * 認証・アクション開始
          */
         function handleAction(action, isSwitch = false) {
-            let url = `${API_BASE_URL}/auth/discord?action=${action}`;
-            if (isSwitch) {
-                url += '&switch=true';
-            }
+            const lang = document.getElementById('lang-select').value;
+            let url = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
+            if (isSwitch) url += '&switch=true';
             window.location.href = url;
         }
 
+        // 初期化処理
+        window.addEventListener('DOMContentLoaded', () => {
+            // 言語検知
+            const savedLang = localStorage.getItem('preferred-lang');
+            const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
+            const finalLang = savedLang || browserLang;
+            
+            updateLanguage(finalLang);
+            checkLoginStatus();
+        });
+
+        // 言語選択イベント
+        document.getElementById('lang-select').addEventListener('change', (e) => {
+            updateLanguage(e.target.value);
+        });
+
+        // ボタンイベント
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
-        
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
             e.preventDefault();
             handleAction('buy', true);
         });
-
-        window.addEventListener('DOMContentLoaded', checkLoginStatus);
     </script>
 </body>
 </html>
