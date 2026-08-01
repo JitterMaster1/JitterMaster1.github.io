@@ -94,8 +94,8 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL
-        const API_BASE_URL = 'https://doing-scores-persistent-armor.trycloudflare.com';
+        // ★ 新しい Cloudflare Tunnel URL に更新
+        const API_BASE_URL = 'https://starter-accessory-cloud-irrigation.trycloudflare.com';
 
         // 翻訳データ (index.html用)
         const translations = {
@@ -127,9 +127,6 @@
             }
         };
 
-        /**
-         * 言語の切り替え
-         */
         function updateLanguage(lang) {
             const t = translations[lang];
             document.getElementById('text-hero-title').firstChild.textContent = t.hero_title;
@@ -143,16 +140,10 @@
             document.getElementById('text-feat-lifetime').innerText = t.feat_lifetime;
             document.getElementById('text-status-signed-in').innerText = t.status_signed_in;
             document.getElementById('switch-account-link').innerText = t.status_switch;
-            
-            // 選択ボックスの値を同期
             document.getElementById('lang-select').value = lang;
-            // ローカルストレージに保存
             localStorage.setItem('preferred-lang', lang);
         }
 
-        /**
-         * ログイン状態の確認
-         */
         async function checkLoginStatus() {
             try {
                 const response = await fetch(`${API_BASE_URL}/user/status`);
@@ -168,9 +159,6 @@
             }
         }
 
-        /**
-         * 認証・アクション開始
-         */
         function handleAction(action, isSwitch = false) {
             const lang = document.getElementById('lang-select').value;
             let url = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
@@ -178,23 +166,18 @@
             window.location.href = url;
         }
 
-        // 初期化処理
         window.addEventListener('DOMContentLoaded', () => {
-            // 言語検知
             const savedLang = localStorage.getItem('preferred-lang');
             const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
             const finalLang = savedLang || browserLang;
-            
             updateLanguage(finalLang);
             checkLoginStatus();
         });
 
-        // 言語選択イベント
         document.getElementById('lang-select').addEventListener('change', (e) => {
             updateLanguage(e.target.value);
         });
 
-        // ボタンイベント
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
