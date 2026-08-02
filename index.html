@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.3に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.3">
+    <!-- CSSファイルの読み込み (バージョンを3.4に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.4">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -36,9 +36,18 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-container">
-            <!-- 左側：画像セクション -->
-            <div class="hero-image-box">
-                <img src="software.png" alt="Apex Legends Movement Macro Preview" class="software-img">
+            <!-- 左側：画像セクション (クリックで切り替わるカルーセル) -->
+            <div class="hero-image-box" id="software-carousel">
+                <img src="software1.png" alt="Preview 1" class="software-img active">
+                <img src="software2.png" alt="Preview 2" class="software-img">
+                <img src="software3.png" alt="Preview 3" class="software-img">
+                
+                <!-- カルーセルのインジケーター (任意) -->
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
             </div>
 
             <!-- 右側：コンテンツセクション -->
@@ -94,8 +103,8 @@
     <script>
         lucide.createIcons();
 
-        // ★ 新しい Cloudflare Tunnel URL に更新
-        const API_BASE_URL = 'https://ages-imported-being-instrumentation.trycloudflare.com';
+        // サーバーのURL
+        const API_BASE_URL = 'https://starter-accessory-cloud-irrigation.trycloudflare.com';
 
         // 翻訳データ (index.html用)
         const translations = {
@@ -113,20 +122,43 @@
                 status_switch: "Switch account"
             },
             ja: {
-                hero_title: "エーペックスレジェンズ ",
-                hero_highlight: "キャラコンマクロ",
-                hero_desc: "Apex Legendsでのストレイフを自動化します。スペースキーを長押ししながら移動キーを押すだけ。購入は以下から可能です。",
+                hero_title: "Apex Legends ",
+                hero_highlight: "Movement",
+                hero_desc: "スペースキーを長押ししながら移動キーを押すことでストレイフマクロが反応します。下からご購入いただけます。",
                 btn_buy: "今すぐ購入",
                 btn_check: "ライセンスキーを確認",
                 btn_learn: "詳細を見る",
                 feat_driverless: "ドライバーレス",
-                feat_undetected: "検出不可",
-                feat_lifetime: "無期限",
+                feat_undetected: "未検地",
+                feat_lifetime: "ライフタイム",
                 status_signed_in: "Discordログイン中: ",
                 status_switch: "アカウントを切り替える"
             }
         };
 
+        /**
+         * カルーセルの制御
+         */
+        const carousel = document.getElementById('software-carousel');
+        const images = carousel.querySelectorAll('.software-img');
+        const dots = carousel.querySelectorAll('.dot');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+                dots[i].classList.toggle('active', i === index);
+            });
+        }
+
+        carousel.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        /**
+         * 言語の切り替え
+         */
         function updateLanguage(lang) {
             const t = translations[lang];
             document.getElementById('text-hero-title').firstChild.textContent = t.hero_title;
@@ -140,10 +172,14 @@
             document.getElementById('text-feat-lifetime').innerText = t.feat_lifetime;
             document.getElementById('text-status-signed-in').innerText = t.status_signed_in;
             document.getElementById('switch-account-link').innerText = t.status_switch;
+            
             document.getElementById('lang-select').value = lang;
             localStorage.setItem('preferred-lang', lang);
         }
 
+        /**
+         * ログイン状態の確認
+         */
         async function checkLoginStatus() {
             try {
                 const response = await fetch(`${API_BASE_URL}/user/status`);
@@ -159,6 +195,9 @@
             }
         }
 
+        /**
+         * 認証・アクション開始
+         */
         function handleAction(action, isSwitch = false) {
             const lang = document.getElementById('lang-select').value;
             let url = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
@@ -166,10 +205,12 @@
             window.location.href = url;
         }
 
+        // 初期化
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang');
             const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
             const finalLang = savedLang || browserLang;
+            
             updateLanguage(finalLang);
             checkLoginStatus();
         });
