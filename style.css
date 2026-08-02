@@ -115,14 +115,18 @@ img.nav-social-img.icon-x {
     z-index: 10;
 }
 
-/* 左側：画像エリア */
+/* 左側：画像エリア (カルーセル) */
 .hero-image-box {
     flex: 1.5;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
 }
 
 .software-img {
+    display: none;
     width: 100%;
     max-width: 750px;
     height: auto;
@@ -132,6 +136,36 @@ img.nav-social-img.icon-x {
         0 40px 80px rgba(0, 0, 0, 0.8),
         0 0 40px rgba(0, 162, 255, 0.1);
     border: 1px solid var(--border-color);
+    transition: opacity 0.5s ease;
+}
+
+.software-img.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
 /* 右側：コンテンツエリア */
@@ -163,7 +197,7 @@ img.nav-social-img.icon-x {
     font-weight: 400;
 }
 
-/* ボタンエリア (CTA Group) */
+/* ボタンエリア */
 .cta-group {
     display: flex;
     flex-direction: column;
@@ -218,7 +252,6 @@ button {
     transform: translateY(-2px);
 }
 
-/* 横長ボタン */
 .btn-wide {
     width: 100%;
     background-color: transparent;
@@ -322,7 +355,7 @@ button {
 /* レスポンシブ対応 */
 @media (max-width: 1150px) {
     .hero-container { flex-direction: column; text-align: center; }
-    .hero-image-box { justify-content: center; }
+    .hero-image-box { justify-content: center; flex: 1; }
     .hero-content { 
         text-align: center; 
         display: flex; 
