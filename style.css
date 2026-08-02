@@ -131,7 +131,7 @@ img.nav-social-img.icon-x {
     max-width: 750px;
     height: auto;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 0 !important; /* 角を丸めない修正 */
     box-shadow: 
         0 40px 80px rgba(0, 0, 0, 0.8),
         0 0 40px rgba(0, 162, 255, 0.1);
@@ -197,7 +197,7 @@ img.nav-social-img.icon-x {
     font-weight: 400;
 }
 
-/* ボタンエリア */
+/* ボタンエリア (CTA Group) */
 .cta-group {
     display: flex;
     flex-direction: column;
