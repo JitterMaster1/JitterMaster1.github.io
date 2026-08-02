@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.5に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.5">
+    <!-- CSSファイルの読み込み (バージョンを3.6に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.6">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -65,7 +65,7 @@
                     <button class="btn-wide" id="text-btn-learn">Learn More</button>
                 </div>
 
-                <!-- 特徴セクション -->
+                <!-- 特徴セクション (Driverless, Undetected, Lifetime の順) -->
                 <div class="features">
                     <div class="feature-item">
                         <i data-lucide="cpu"></i>
@@ -118,11 +118,12 @@
                 feat_undetected: "Undetected",
                 feat_lifetime: "Lifetime",
                 status_signed_in: "Signed in to Discord as ",
-                status_switch: "Switch account"
+                status_switch: "Switch account",
+                link_learn_more: "https://discord.com/channels/1325563321155457055/1532950492315910165"
             },
             ja: {
                 hero_title: "Apex Legends ",
-                hero_highlight: "Movement",
+                hero_highlight: "Movement Macro",
                 hero_desc: "スペースキーを長押ししながら移動キーを押すことでストレイフマクロが反応します。下からご購入いただけます。",
                 btn_buy: "今すぐ購入",
                 btn_check: "ライセンスキーを確認",
@@ -131,13 +132,11 @@
                 feat_undetected: "未検地",
                 feat_lifetime: "ライフタイム",
                 status_signed_in: "Discordログイン中: ",
-                status_switch: "アカウントを切り替える"
+                status_switch: "アカウントを切り替える",
+                link_learn_more: "https://discord.com/channels/1325563321155457055/1532932332300800190"
             }
         };
 
-        /**
-         * カルーセルの制御
-         */
         const carousel = document.getElementById('software-carousel');
         const images = carousel.querySelectorAll('.software-img');
         const dots = carousel.querySelectorAll('.dot');
@@ -155,9 +154,6 @@
             showImage(currentIndex);
         });
 
-        /**
-         * 言語の切り替え
-         */
         function updateLanguage(lang) {
             const t = translations[lang];
             if (!t) return;
@@ -177,9 +173,6 @@
             localStorage.setItem('preferred-lang', lang);
         }
 
-        /**
-         * ログイン状態の確認
-         */
         async function checkLoginStatus() {
             try {
                 const response = await fetch(`${API_BASE_URL}/user/status`);
@@ -195,9 +188,6 @@
             }
         }
 
-        /**
-         * 認証・アクション開始
-         */
         function handleAction(action, isSwitch = false) {
             const lang = document.getElementById('lang-select').value;
             let url = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
@@ -205,7 +195,6 @@
             window.location.href = url;
         }
 
-        // 初期化処理
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang');
             const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
@@ -215,14 +204,19 @@
             checkLoginStatus();
         });
 
-        // 言語選択イベント
         document.getElementById('lang-select').addEventListener('change', (e) => {
             updateLanguage(e.target.value);
         });
 
-        // ボタンイベント
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
+        
+        // Learn More ボタンの挙動
+        document.getElementById('text-btn-learn').addEventListener('click', () => {
+            const lang = document.getElementById('lang-select').value;
+            window.open(translations[lang].link_learn_more, '_blank');
+        });
+
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
             e.preventDefault();
             handleAction('buy', true);
