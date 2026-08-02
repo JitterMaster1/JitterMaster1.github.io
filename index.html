@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JitterMaster | Apex Legends Movement Macro</title>
     <!-- サイトのアイコン (favicon) の設定 -->
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="Pageicon.png" type="image/png">
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.4に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.4">
+    <!-- CSSファイルの読み込み (バージョンを3.5に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.5">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -36,13 +36,12 @@
         <div class="hero-overlay"></div>
         
         <div class="hero-container">
-            <!-- 左側：画像セクション (クリックで切り替わるカルーセル) -->
+            <!-- 左側：画像セクション (カルーセル) -->
             <div class="hero-image-box" id="software-carousel">
                 <img src="software1.png" alt="Preview 1" class="software-img active">
                 <img src="software2.png" alt="Preview 2" class="software-img">
                 <img src="software3.png" alt="Preview 3" class="software-img">
                 
-                <!-- カルーセルのインジケーター (任意) -->
                 <div class="carousel-dots">
                     <span class="dot active"></span>
                     <span class="dot"></span>
@@ -66,7 +65,7 @@
                     <button class="btn-wide" id="text-btn-learn">Learn More</button>
                 </div>
 
-                <!-- 特徴セクション (Driverless, Undetected, Lifetime の順) -->
+                <!-- 特徴セクション -->
                 <div class="features">
                     <div class="feature-item">
                         <i data-lucide="cpu"></i>
@@ -103,10 +102,10 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL
-        const API_BASE_URL = 'https://starter-accessory-cloud-irrigation.trycloudflare.com';
+        // サーバーのURL (最新のCloudflare Tunnel URL)
+        const API_BASE_URL = 'https://ages-imported-being-instrumentation.trycloudflare.com';
 
-        // 翻訳データ (index.html用)
+        // 翻訳データ
         const translations = {
             en: {
                 hero_title: "Apex Legends ",
@@ -161,6 +160,7 @@
          */
         function updateLanguage(lang) {
             const t = translations[lang];
+            if (!t) return;
             document.getElementById('text-hero-title').firstChild.textContent = t.hero_title;
             document.getElementById('text-hero-highlight').innerText = t.hero_highlight;
             document.getElementById('text-hero-desc').innerText = t.hero_desc;
@@ -205,7 +205,7 @@
             window.location.href = url;
         }
 
-        // 初期化
+        // 初期化処理
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang');
             const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
@@ -215,10 +215,12 @@
             checkLoginStatus();
         });
 
+        // 言語選択イベント
         document.getElementById('lang-select').addEventListener('change', (e) => {
             updateLanguage(e.target.value);
         });
 
+        // ボタンイベント
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
         document.getElementById('switch-account-link').addEventListener('click', (e) => {
