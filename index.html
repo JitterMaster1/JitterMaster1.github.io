@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.6に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.6">
+    <!-- CSSファイルの読み込み (バージョンを3.7に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.7">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -52,6 +52,10 @@
             <!-- 右側：コンテンツセクション -->
             <div class="hero-content">
                 <h1 id="text-hero-title">Apex Legends <br><span class="highlight" id="text-hero-highlight">Movement Macro</span></h1>
+                
+                <!-- 金額表示エリア -->
+                <div class="hero-price" id="text-hero-price">¥2,000</div>
+
                 <p class="description" id="text-hero-desc">
                     Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.
                 </p>
@@ -65,7 +69,7 @@
                     <button class="btn-wide" id="text-btn-learn">Learn More</button>
                 </div>
 
-                <!-- 特徴セクション (Driverless, Undetected, Lifetime の順) -->
+                <!-- 特徴セクション -->
                 <div class="features">
                     <div class="feature-item">
                         <i data-lucide="cpu"></i>
@@ -102,7 +106,7 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL (最新のCloudflare Tunnel URL)
+        // サーバーのURL
         const API_BASE_URL = 'https://boolean-simulation-inexpensive-heroes.trycloudflare.com';
 
         // 翻訳データ
@@ -110,6 +114,7 @@
             en: {
                 hero_title: "Apex Legends ",
                 hero_highlight: "Movement Macro",
+                hero_price: "$15.00",
                 hero_desc: "Automates strafing in Apex Legends. Simply hold the Space key and press a movement key. Available for purchase below.",
                 btn_buy: "Buy Now",
                 btn_check: "Check License Key",
@@ -125,6 +130,7 @@
                 hero_title: "Apex Legends ",
                 hero_highlight: "Movement Macro",
                 hero_desc: "スペースキーを長押ししながら移動キーを押すことでストレイフマクロが反応します。下からご購入いただけます。",
+                hero_price: "¥2,000",
                 btn_buy: "今すぐ購入",
                 btn_check: "ライセンスキーを確認",
                 btn_learn: "詳細を見る",
@@ -159,6 +165,7 @@
             if (!t) return;
             document.getElementById('text-hero-title').firstChild.textContent = t.hero_title;
             document.getElementById('text-hero-highlight').innerText = t.hero_highlight;
+            document.getElementById('text-hero-price').innerText = t.hero_price;
             document.getElementById('text-hero-desc').innerText = t.hero_desc;
             document.getElementById('text-btn-buy').innerText = t.btn_buy;
             document.getElementById('text-btn-check').innerText = t.btn_check;
@@ -211,7 +218,6 @@
         document.getElementById('buy-now-btn').addEventListener('click', () => handleAction('buy'));
         document.getElementById('check-key-btn').addEventListener('click', () => handleAction('check'));
         
-        // Learn More ボタンの挙動
         document.getElementById('text-btn-learn').addEventListener('click', () => {
             const lang = document.getElementById('lang-select').value;
             window.open(translations[lang].link_learn_more, '_blank');
