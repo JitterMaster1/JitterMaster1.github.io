@@ -69,7 +69,7 @@
                     <button class="btn-wide" id="text-btn-learn">Learn More</button>
                 </div>
 
-                <!-- 特徴セクション -->
+                <!-- 特徴セクション (Driverless, Undetected, Lifetime の順) -->
                 <div class="features">
                     <div class="feature-item">
                         <i data-lucide="cpu"></i>
@@ -107,7 +107,7 @@
         lucide.createIcons();
 
         // サーバーのURL
-        const API_BASE_URL = 'https://barrier-strain-webmaster-midnight.trycloudflare.com';
+        const API_BASE_URL = 'https://dream-expression-milwaukee-unfortunately.trycloudflare.com';
 
         // 翻訳データ
         const translations = {
@@ -143,6 +143,7 @@
             }
         };
 
+        // カルーセルの制御
         const carousel = document.getElementById('software-carousel');
         const images = carousel.querySelectorAll('.software-img');
         const dots = carousel.querySelectorAll('.dot');
@@ -160,6 +161,7 @@
             showImage(currentIndex);
         });
 
+        // 言語切り替え
         function updateLanguage(lang) {
             const t = translations[lang];
             if (!t) return;
@@ -175,10 +177,12 @@
             document.getElementById('text-feat-lifetime').innerText = t.feat_lifetime;
             document.getElementById('text-status-signed-in').innerText = t.status_signed_in;
             document.getElementById('switch-account-link').innerText = t.status_switch;
+            
             document.getElementById('lang-select').value = lang;
             localStorage.setItem('preferred-lang', lang);
         }
 
+        // ログインステータス確認
         async function checkLoginStatus() {
             try {
                 const response = await fetch(`${API_BASE_URL}/user/status`);
@@ -194,20 +198,23 @@
             }
         }
 
+        // アクション実行
         function handleAction(action) {
             const lang = document.getElementById('lang-select').value;
-            // 毎回認証を行うため、常に直接Discord認証URLへ飛ばす
             window.location.href = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
         }
 
+        // 初期化
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang');
             const browserLang = navigator.language.startsWith('ja') ? 'ja' : 'en';
             const finalLang = savedLang || browserLang;
+            
             updateLanguage(finalLang);
             checkLoginStatus();
         });
 
+        // イベントリスナー
         document.getElementById('lang-select').addEventListener('change', (e) => {
             updateLanguage(e.target.value);
         });
