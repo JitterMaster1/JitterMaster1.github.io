@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.7に更新) -->
-    <link rel="stylesheet" href="style.css?v=3.7">
+    <!-- CSSファイルの読み込み (バージョンを3.8に更新) -->
+    <link rel="stylesheet" href="style.css?v=3.8">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -107,7 +107,7 @@
         lucide.createIcons();
 
         // サーバーのURL
-        const API_BASE_URL = 'https://strict-guitar-virginia-type.trycloudflare.com';
+        const API_BASE_URL = 'https://boolean-simulation-inexpensive-heroes.trycloudflare.com';
 
         // 翻訳データ
         const translations = {
@@ -143,6 +143,7 @@
             }
         };
 
+        // カルーセル
         const carousel = document.getElementById('software-carousel');
         const images = carousel.querySelectorAll('.software-img');
         const dots = carousel.querySelectorAll('.dot');
@@ -160,6 +161,7 @@
             showImage(currentIndex);
         });
 
+        // 言語切り替え
         function updateLanguage(lang) {
             const t = translations[lang];
             if (!t) return;
@@ -180,6 +182,7 @@
             localStorage.setItem('preferred-lang', lang);
         }
 
+        // ステータス確認
         async function checkLoginStatus() {
             try {
                 const response = await fetch(`${API_BASE_URL}/user/status`);
@@ -195,6 +198,7 @@
             }
         }
 
+        // アクション
         function handleAction(action, isSwitch = false) {
             const lang = document.getElementById('lang-select').value;
             let url = `${API_BASE_URL}/auth/discord?action=${action}&lang=${lang}`;
