@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- CSSファイルの読み込み (バージョンを3.9に更新) -->
+    <!-- CSSファイルの読み込み (キャッシュ回避のためバージョンを3.9に更新) -->
     <link rel="stylesheet" href="style.css?v=3.9">
     <!-- アイコン用: Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- ヘッダー / ナビゲーション1 -->
+    <!-- ヘッダー / ナビゲーション -->
     <header class="navbar">
         <div class="logo">
             <img src="logo.png" alt="JitterMaster Logo" class="logo-img">
@@ -106,10 +106,10 @@
     <script>
         lucide.createIcons();
 
-        // サーバーのURL
-        const API_BASE_URL = 'https://dream-expression-milwaukee-unfortunately.trycloudflare.com';
+        // サーバーのURL (最新のものに書き換えてください)
+        const API_BASE_URL = 'https://strict-guitar-virginia-type.trycloudflare.com';
 
-        // 翻訳データ
+        // 翻訳データ (ここで「未検知」を強制指定)
         const translations = {
             en: {
                 hero_title: "Apex Legends ",
@@ -135,7 +135,7 @@
                 btn_check: "ライセンスキーを確認",
                 btn_learn: "詳細を見る",
                 feat_driverless: "ドライバーレス",
-                feat_undetected: "未検地",
+                feat_undetected: "未検知", // ここを修正しました
                 feat_lifetime: "ライフタイム",
                 status_signed_in: "Discordログイン中: ",
                 status_switch: "アカウントを切り替える",
